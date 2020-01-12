@@ -1,3 +1,4 @@
+"use strict";
 /* 
  Let vs. Var:
  With the var keyword you can overwrite variable declarations without an error.
@@ -16,7 +17,6 @@ its scope is limited to that block, statement, or expression.
 */
 
 function checkScope() {
-  "use strict";
   var i = "function scope";
   console.log("Function scope i is: ", i);
   if (true) {
@@ -28,7 +28,6 @@ function checkScope() {
 }
 
 function checkScope() {
-  "use strict";
   let i = "function scope";
   if (true) {
     let i = "block scope";
@@ -37,3 +36,19 @@ function checkScope() {
   console.log("Function scope i is: ", i);
   return i;
 }
+
+/* 
+Const: All features of let, but read-only variables that cannot be reassigned 
+       Used for variables that won't change
+*/
+
+const FAV_PET = "Cats";
+FAV_PET = "Dogs"; // returns error
+
+function printManyTimes(str) {
+  const SENTENCE = str + " World";
+  for (let i = 0; i < str.length; i += 2) {
+    console.log(SENTENCE);
+  }
+}
+printManyTimes("Hello");
