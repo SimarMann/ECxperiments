@@ -52,3 +52,19 @@ function printManyTimes(str) {
   }
 }
 printManyTimes("Hello");
+
+/* 
+Mutability of a Const Variable; 
+Objects (including arrays and functions) assigned to a variable using const are still mutable.
+The const declaration only prevents reassignment of the variable identifier.
+*/
+
+const s = [5, 7, 2];
+function editInPlace() {
+  // s = [2, 5, 7]; <- error: variable identifier 's' cannot point to a different array
+  s[0] = 2;
+  s[1] = 5;
+  s[2] = 7;
+  // Like all arrays the elements in s are mutable
+}
+editInPlace(); // const s = [2, 5, 7]
