@@ -95,9 +95,9 @@ Arrow Functions:
 When there is no function body, and only a return value, 
 arrow function syntax allows you to omit the keyword return 
 & the brackets surrounding the code
-*/
 
-// Anonymous Functions (functions that won't be reused):
+Anonymous Functions (functions that won't be reused);
+*/
 
 // Vanilla
 const myFunc = function() {
@@ -113,3 +113,16 @@ var magic = function() {
 const myFunc = () => 'value';
 
 const magic = () => new Date();
+
+/* 
+Arrow Functions with Parameters:
+*/
+
+// single argument functions, written without parentheses surrounding argument
+const doubler = item => item * 2;
+
+// arrow function with multiple arguments
+const multiplier = (item, multi) => item * multi;
+
+const myConcat = (arr1, arr2) => arr1.concat(arr2);
+console.log(myConcat([1, 2], [3, 4, 5]));
