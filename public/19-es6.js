@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /* 
  Let vs. Var:
  With the var keyword you can overwrite variable declarations without an error.
@@ -17,23 +17,23 @@ its scope is limited to that block, statement, or expression.
 */
 
 function checkScope() {
-  var i = "function scope";
-  console.log("Function scope i is: ", i);
+  var i = 'function scope';
+  console.log('Function scope i is: ', i);
   if (true) {
-    i = "block scope";
-    console.log("Block scope i is: ", i);
+    i = 'block scope';
+    console.log('Block scope i is: ', i);
   }
-  console.log("Function scope i is: ", i);
+  console.log('Function scope i is: ', i);
   return i;
 }
 
 function checkScope() {
-  let i = "function scope";
+  let i = 'function scope';
   if (true) {
-    let i = "block scope";
-    console.log("Block scope i is: ", i);
+    let i = 'block scope';
+    console.log('Block scope i is: ', i);
   }
-  console.log("Function scope i is: ", i);
+  console.log('Function scope i is: ', i);
   return i;
 }
 
@@ -42,16 +42,16 @@ Const: All features of let, but read-only variables that cannot be reassigned
        Used for variables that won't change
 */
 
-const FAV_PET = "Cats";
-FAV_PET = "Dogs"; // returns error
+const FAV_PET = 'Cats';
+FAV_PET = 'Dogs'; // returns error
 
 function printManyTimes(str) {
-  const SENTENCE = str + " World";
+  const SENTENCE = str + ' World';
   for (let i = 0; i < str.length; i += 2) {
     console.log(SENTENCE);
   }
 }
-printManyTimes("Hello");
+printManyTimes('Hello');
 
 /* 
 Mutability of a Const Variable; 
@@ -78,7 +78,7 @@ Once the object is frozen, you can no longer add, update, or delete properties f
 
 function freezeObj() {
   const MATH_CONSTANTS = {
-    PI: 3.14
+    PI: 3.14,
   };
   Object.freeze(MATH_CONSTANTS);
   try {
@@ -89,3 +89,27 @@ function freezeObj() {
   return MATH_CONSTANTS.PI;
 }
 const PI = freezeObj();
+
+/* 
+Arrow Functions:
+When there is no function body, and only a return value, 
+arrow function syntax allows you to omit the keyword return 
+& the brackets surrounding the code
+*/
+
+// Anonymous Functions (functions that won't be reused):
+
+// Vanilla
+const myFunc = function() {
+  const myVar = 'value';
+  return myVar;
+};
+
+var magic = function() {
+  return new Date();
+};
+
+// Arrow
+const myFunc = () => 'value';
+
+const magic = () => new Date();
