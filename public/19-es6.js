@@ -126,3 +126,17 @@ const multiplier = (item, multi) => item * multi;
 
 const myConcat = (arr1, arr2) => arr1.concat(arr2);
 console.log(myConcat([1, 2], [3, 4, 5]));
+
+/*
+Default parameters for functions;
+the default parameter kicks in when the argument is not specified (it is undefined)
+*/
+const greeting = (name = 'Anonymous') => 'Hello ' + name;
+
+console.log(greeting('John')); // Hello John
+console.log(greeting()); // Hello Anonymous
+
+const increment = (number, value = 1) => number + value;
+
+console.log(increment(5, 2)); // returns 7
+console.log(increment(5)); // returns 6
