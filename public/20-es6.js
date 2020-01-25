@@ -128,7 +128,7 @@ const myConcat = (arr1, arr2) => arr1.concat(arr2);
 console.log(myConcat([1, 2], [3, 4, 5]));
 
 /*
-Default parameters for functions;
+Default parameters for functions:
 the default parameter kicks in when the argument is not specified (it is undefined)
 */
 const greeting = (name = 'Anonymous') => 'Hello ' + name;
@@ -140,3 +140,17 @@ const increment = (number, value = 1) => number + value;
 
 console.log(increment(5, 2)); // returns 7
 console.log(increment(5)); // returns 6
+
+/* 
+Rest Parameters for Functions:
+creates functions that take a variable number of arguments
+the arguments are stored in a parameter array which can be accessed inside the function
+allows us to apply map(), filter() and reduce() on the parameters array
+*/
+const howMany = (...args) => 'You have passed ' + args.length + ' arguments.';
+
+console.log(howMany(0, 1, 2)); // You have passed 3 arguments.
+console.log(howMany('string', null, [1, 2, 3], {})); // You have passed 4 arguments.
+
+const sum = (...args) => args.reduce((a, b) => a + b, 0);
+console.log(sum(1, 2, 3)); // 6
