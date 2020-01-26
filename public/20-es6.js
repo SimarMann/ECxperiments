@@ -154,3 +154,20 @@ console.log(howMany('string', null, [1, 2, 3], {})); // You have passed 4 argume
 
 const sum = (...args) => args.reduce((a, b) => a + b, 0);
 console.log(sum(1, 2, 3)); // 6
+
+/* 
+Spread Operator: 
+expand arrays and other expressions where multiple parameters or elements are expected 
+*/
+
+// Vanilla
+var arr = [6, 89, 3, 45];
+var maximus = Math.max.apply(null, arr); // returns 89
+
+// ES6
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr); // returns 89
+
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+let arr2 = [...arr1];
+console.log(arr2);
