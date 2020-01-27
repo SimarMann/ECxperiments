@@ -171,3 +171,24 @@ const maximus = Math.max(...arr); // returns 89
 const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
 let arr2 = [...arr1];
 console.log(arr2);
+
+/*
+Destructuring Assignment:
+makes it possible to assign values from arrays, 
+or properties from objects, into distinct variables.
+*/
+
+// Vanilla
+const user = { name: 'John Doe', age: 34 };
+const name = user.name; // name = 'John Doe'
+const age = user.age; // age = 34
+
+// ES6
+const { name, age } = user; // name = 'John Doe', age = 34
+
+const HIGH_TEMPERATURES = {
+  yesterday: 75,
+  today: 77,
+  tomorrow: 80,
+};
+const { today, tomorrow } = HIGH_TEMPERATURES; // today = 77, tommorow = 80
