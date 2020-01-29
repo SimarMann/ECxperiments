@@ -192,3 +192,10 @@ const HIGH_TEMPERATURES = {
   tomorrow: 80,
 };
 const { today, tomorrow } = HIGH_TEMPERATURES; // today = 77, tommorow = 80
+
+// Destructuring; assign a new variable name when extracting values:
+
+const { name: userName, age: userAge } = user;
+// userName = 'John Doe', userAge = 34
+const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
+// highToday = 77, highTomorrow = 80
