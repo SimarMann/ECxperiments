@@ -195,7 +195,23 @@ const { today, tomorrow } = HIGH_TEMPERATURES; // today = 77, tommorow = 80
 
 // Destructuring; assign a new variable name when extracting values:
 
-const { name: userName, age: userAge } = user;
-// userName = 'John Doe', userAge = 34
-const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
-// highToday = 77, highTomorrow = 80
+const { name: userName, age: userAge } = user; // userName = 'John Doe', userAge = 34
+const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES; // highToday = 77, highTomorrow = 80
+
+// Destructuring to Assign Variables from Nested Objects:
+
+const LOCAL_FORECAST = {
+  yesterday: { low: 61, high: 75 },
+  today: { low: 64, high: 77 },
+  tomorrow: { low: 68, high: 80 },
+};
+
+const {
+  today: { low, high },
+} = LOCAL_FORECAST; // assign to variables w/ same name
+const {
+  today: { low: lowToday, high: highToday },
+} = LOCAL_FORECAST; // assign to variables w/ different name
+
+console.log(lowToday); // 64
+console.log(highToday); // 77
