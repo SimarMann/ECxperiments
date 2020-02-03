@@ -215,3 +215,17 @@ const {
 
 console.log(lowToday); // 64
 console.log(highToday); // 77
+
+/* 
+Destructuring to Assign Variables from Arrays:
+Spread Operator vs Destructuring Assignment;
+spread operator unpacks all contents of an array into a comma-separated list
+vs
+destructuring assignment lets you pick or choose which elements you want to assign to variables 
+*/
+
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b); // 1, 2
+
+const [a, b, , , c] = [1, 2, 3, 4, 5, 6]; // access value at any index using commas
+console.log(a, b, c); // 1, 2, 5
