@@ -230,7 +230,10 @@ console.log(a, b); // 1, 2
 const [a, b, , , c] = [1, 2, 3, 4, 5, 6]; // access value at any index using commas
 console.log(a, b, c); // 1, 2, 5
 
-// Destructuring Assignment with the Rest Parameter to Reassign Array Elements:
+let [a, b, [c, [d]]] = [1, 2, 3, 4, 5, 6]; // access nested elements
+
+/* Destructuring Assignment with the Rest Parameter to Reassign Array Elements:
+  Rest element only works correctly as the last variable in the list */
 
 // Example 1
 const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
@@ -246,3 +249,20 @@ function removeFirstTwo(list) {
 const arr = removeFirstTwo(source);
 console.log(arr); // should be [3,4,5,6,7,8,9,10]
 console.log(source); // should be [1,2,3,4,5,6,7,8,9,10];
+
+/* Destructuring Assignment to Pass an Object as a Function's Parameters: */
+
+// Without Destructuring
+const profileUpdate = profileData => {
+  const { name, age, nationality, location } = profileData;
+  // do something with these variables
+};
+
+const half = stats => (stats.max + stats.min) / 2.0;
+
+// With
+const profileUpdate = ({ name, age, nationality, location }) => {
+  // do something with these fields
+};
+
+const half = ({ max, min }) => (max + min) / 2.0;
