@@ -1,5 +1,6 @@
 'use strict';
 /* 
+(1).
  Let vs. Var:
  With the var keyword you can overwrite variable declarations without an error.
  When using let, a variable with the same name can only be declared once.  
@@ -91,6 +92,7 @@ function freezeObj() {
 const PI = freezeObj();
 
 /* 
+(2).
 Arrow Functions:
 When there is no function body, and only a return value, 
 arrow function syntax allows you to omit the keyword return 
@@ -266,3 +268,50 @@ const profileUpdate = ({ name, age, nationality, location }) => {
 };
 
 const half = ({ max, min }) => (max + min) / 2.0;
+
+/* 
+(3).
+Template Literal:
+ Create multi-line strings without \n
+ Use placeholders (variables) to create strings
+ Uses backticks (`), not quotes (' or ") to wrap string
+ Don't have to use concatenation with the + operator
+ To add variables to strings, you just drop the variable in a template string and wrap it with ${ and }
+ Can include expressions e.g ${a + b}
+*/
+
+// Example One:
+const person = {
+  name: 'Zodiac Hasbro',
+  age: 56,
+};
+
+// Template literal with multi-line and string interpolation
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting); // prints
+// Hello, my name is Zodiac Hasbro!
+// I am 56 years old.
+
+// Example Two:
+const result = {
+  success: ['max-length', 'no-amd', 'prefer-arrow-functions'],
+  failure: ['no-var', 'var-on-top', 'linebreak'],
+  skipped: ['id-blacklist', 'no-dup-keys'],
+};
+function makeList(arr) {
+  'use strict';
+  // change code below this line
+  const resultDisplayArray = arr.map(item => `<li class="text-warning">${item}</li>`);
+  // change code above this line
+  return resultDisplayArray;
+}
+
+/*
+   makeList(result.failure) should return:
+  [ `<li class="text-warning">no-var</li>`,
+    `<li class="text-warning">var-on-top</li>`,
+    `<li class="text-warning">linebreak</li>` ]
+ */
+const resultDisplayArray = makeList(result.failure);
