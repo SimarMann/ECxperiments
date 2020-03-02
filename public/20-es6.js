@@ -315,3 +315,31 @@ function makeList(arr) {
     `<li class="text-warning">linebreak</li>` ]
  */
 const resultDisplayArray = makeList(result.failure);
+
+/* 
+Object Literal Declarations Using Object Property Shorthand:
+eliminates the redundancy of having to write key : value
+*/
+
+// Without
+const getMousePosition = (x, y) => ({
+  x: x,
+  y: y,
+});
+
+const createPerson = (name, age, gender) => {
+  return {
+    name: name,
+    age: age,
+    gender: gender,
+  };
+};
+console.log(createPerson('Zodiac Hasbro', 56, 'male')); // returns a proper object
+
+// With
+const getMousePosition = (x, y) => ({ x, y });
+
+const createPerson = (name, age, gender) => {
+  return { name, age, gender };
+};
+console.log(createPerson('Zodiac Hasbro', 56, 'male')); // returns a proper object
