@@ -343,3 +343,28 @@ const createPerson = (name, age, gender) => {
   return { name, age, gender };
 };
 console.log(createPerson('Zodiac Hasbro', 56, 'male')); // returns a proper object
+
+/* 
+Declarative Functions Shorthand:
+eliminates the function keyword and colon altogether when defining functions in objects
+*/
+
+// ES5
+const bicycle = {
+  gear: 2,
+  setGear: function(newGear) {
+    this.gear = newGear;
+  },
+};
+bicycle.setGear(3);
+console.log(bicycle.gear);
+
+// ES6
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    this.gear = newGear;
+  },
+};
+bicycle.setGear(3);
+console.log(bicycle.gear);
