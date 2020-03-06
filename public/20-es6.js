@@ -391,3 +391,29 @@ class Vegetable {
 }
 const carrot = new Vegetable('carrot');
 console.log(carrot.name); // => should be 'carrot'
+
+/*
+Getters and Setters:
+Getter functions return (get) the value of an object's private variable
+Setter functions are meant to modify (set) the value of an object's private variable
+They hide the object by abstracting implementation details from the user
+Convention to precede the name of a private variable with an underscore (_)
+*/
+
+class Thermostat {
+  constructor(fahrenheit) {
+    this._fahrenheit = fahrenheit;
+  }
+  get temperature() {
+    return (5 / 9) * (this._fahrenheit - 32);
+  }
+
+  set temperature(celsius) {
+    this._fahrenheit = (celsius * 9.0) / 5 + 32;
+  }
+}
+
+const thermos = new Thermostat(76); // setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in C
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in C
