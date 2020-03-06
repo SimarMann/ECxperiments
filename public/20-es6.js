@@ -368,3 +368,26 @@ const bicycle = {
 };
 bicycle.setGear(3);
 console.log(bicycle.gear);
+
+/* 
+(4).
+Class syntax:
+a new syntax to create objects, using the class keyword
+UpperCamelCase should be used for names by convention 
+*/
+
+// ES5
+var Vegetable = function(name) {
+  this.name = name;
+};
+var carrot = new Vegetable('carrot');
+console.log(carrot.name);
+
+// ES6
+class Vegetable {
+  constructor(name) {
+    this.name = name;
+  }
+}
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // => should be 'carrot'
