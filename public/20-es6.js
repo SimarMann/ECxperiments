@@ -417,3 +417,36 @@ const thermos = new Thermostat(76); // setting in Fahrenheit scale
 let temp = thermos.temperature; // 24.44 in C
 thermos.temperature = 26;
 temp = thermos.temperature; // 26 in C
+
+/* 
+(5).
+Modules:
+Share code among JavaScript files
+Export parts of a file 
+Import parts of a file
+*/
+
+// ES5: each script loaded one by one
+<html>
+<head>
+</head>
+<body>
+  
+  <!--HTML content goes here-->
+  
+  <script src="js/jquery.js"></script>
+  <script src="js/script2.js"></script>
+  <script src="js/script3.js"></script>
+  <script src="js/script4.js"></script>
+</body>
+</html>
+
+
+// ES6: Module Script loaded in one file 
+<html>
+  <body>
+  <!--HTML content goes here-->
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
+
