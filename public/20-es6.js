@@ -450,3 +450,30 @@ Import parts of a file
   </body>
 </html>
 
+/*
+Export:
+ Import component into another file and use it without having to rewrite the code
+ Share components across several javascript files
+*/
+
+// Export before declaration
+
+export const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+export const lowercaseString = (string) => {
+  return string.toLowerCase();
+}
+
+// Export apart from declarations 
+
+const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+const lowercaseString = (string) => {
+  return string.toLowerCase()
+}
+
+export { uppercaseString, lowercaseString };
