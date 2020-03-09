@@ -452,7 +452,7 @@ Import parts of a file
 
 /*
 Export:
- Import component into another file and use it without having to rewrite the code
+ Export component into another file and use it without having to rewrite the code
  Share components across several javascript files
 */
 
@@ -477,3 +477,11 @@ const lowercaseString = (string) => {
 }
 
 export { uppercaseString, lowercaseString };
+
+/*
+Import:
+ Import component into another file and use it without having to rewrite the code
+ Share components across several javascript files
+*/
+
+import { uppercaseString, lowercaseString } from './string_functions.js';
