@@ -479,6 +479,25 @@ const lowercaseString = (string) => {
 export { uppercaseString, lowercaseString };
 
 /*
+Export Default:
+Single default export per module
+Default export can be a function, a class, an object or anything else
+Use this syntax if only one value is being exported from a file
+Creates a fallback value for a file or module
+You cannot use export default with var, let, or const
+*/
+
+// anonymous function
+export default function(x, y) {
+  return x * y;
+}
+
+// named function
+export default function multiply(x, y) {
+  return x * y;
+}
+
+/*
 Import:
  Import component into another file and use it without having to rewrite the code
  Share components across several javascript files
