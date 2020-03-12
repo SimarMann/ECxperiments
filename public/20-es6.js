@@ -503,4 +503,21 @@ Import:
  Share components across several javascript files
 */
 
+// Import specific exports
 import { uppercaseString, lowercaseString } from './string_functions.js';
+
+// Import entire module
+import * as myArithmetic from './math_functions.js';
+
+/* Import a Default Export:
+The imported value is not surrounded by curly braces ({})
+Combine the default syntax with others, default import must be declared first
+*/
+
+import multiply from "./math_functions.js";
+
+// Combine default import with specific imports
+import myDefault, { uppercaseString , lowercaseString } from '/modules/my-module.js';
+
+
+
