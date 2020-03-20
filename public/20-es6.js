@@ -519,5 +519,22 @@ import multiply from "./math_functions.js";
 // Combine default import with specific imports
 import myDefault, { uppercaseString , lowercaseString } from '/modules/my-module.js';
 
+/*
+Promise
+The Promise object represents the eventual completion (or failure) of an asynchronous operation, 
+and its resulting value.
+Three states;
+pending: initial state, neither fulfilled nor rejected.
+fulfilled: meaning that the operation completed successfully.
+rejected: meaning that the operation failed.
+Promise is a constructor function, so you need to use the new keyword to create one
+It takes a function, as its argument, with two parameters - resolve and reject
+*/ 
+
+const makeServerRequest = new Promise((resolve, reject) => {
+
+});
+
+
 
 
