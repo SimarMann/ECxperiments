@@ -535,6 +535,22 @@ const makeServerRequest = new Promise((resolve, reject) => {
 
 });
 
+/*
+Handle a Fulfilled Promise with then method;
+After a server request, the then method allows you to do something with the response
+*/
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to true to represent a successful response from a server
+  let responseFromServer = true;
+    
+  if(responseFromServer) {
+    makeServerRequest.then(result => console.log(result)); // logs result if successful
+  } else {  
+    reject("Data not received");
+  }
+});
+
 
 
 
