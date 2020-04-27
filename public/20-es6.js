@@ -551,6 +551,28 @@ const makeServerRequest = new Promise((resolve, reject) => {
   }
 });
 
+/*
+Handle a Rejected Promise with catch;
+catch is the method used when your promise has been rejected. 
+It is executed immediately after a promise's reject method is called. 
+*/
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to false to represent an unsuccessful response from a server
+  let responseFromServer = false;
+    
+  if(responseFromServer) {
+    resolve("We got the data");
+  } else {  
+    makeServerRequest.catch(error => {
+    console.log(error);
+    });
+  }
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
 
 
 
