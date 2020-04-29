@@ -13,3 +13,13 @@ Returns true or false.
 let myString = 'Hello, World!';
 let myRegex = /Hello/;
 let result = myRegex.test(myString); // returns true
+
+/*
+(2).
+Alternation / OR Operator = | ;
+search for multiple patterns
+*/
+
+let cString = 'Jen likes the colour red.';
+let cRegex = /red|blue|green|pink|black/; // Change this line
+let result = cRegex.test(cString);
