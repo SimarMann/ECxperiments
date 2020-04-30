@@ -6,7 +6,7 @@ In JavaScript, regular expressions are also objects.
 
 /*
 (1). Test method
-Executes a search for a match between a regular expression and a specified string. 
+Executes a search for a match between a regular expression and a specified case sensitive string. 
 Returns true or false.
 */
 
@@ -23,3 +23,13 @@ search for multiple patterns
 let cString = 'Jen likes the colour red.';
 let cRegex = /red|blue|green|pink|black/; // Change this line
 let result = cRegex.test(cString);
+
+/*
+(3).
+Ignore Case = i ;
+search for uppercase and lowercase variations of specified string
+*/
+
+let iString = 'HELLO';
+let iRegex = /hello/i;
+let iresult = fccRegex.test(myString); // true
