@@ -12,7 +12,7 @@ Returns true or false.
 
 let myString = 'Hello, World!';
 let myRegex = /Hello/;
-let result = myRegex.test(myString); // returns true
+let result = myRegex.test(myString); // true
 
 /*
 (2).
@@ -21,8 +21,8 @@ search for multiple patterns
 */
 
 let cString = 'Jen likes the colour red.';
-let cRegex = /red|blue|green|pink|black/; // Change this line
-let result = cRegex.test(cString);
+let cRegex = /red|blue|green|pink|black/;
+let result = cRegex.test(cString); // true
 
 /*
 (3).
@@ -32,4 +32,15 @@ search for uppercase and lowercase variations of specified string
 
 let iString = 'HELLO';
 let iRegex = /hello/i;
-let iresult = fccRegex.test(myString); // true
+let iresult = iRegex.test(iString); // true
+
+/*
+(4).
+.match() method
+apply the method on a string and pass in the regex inside the parentheses
+extracts actual string matches into array 
+*/
+
+let mString = 'Wow it just appeared from nowhere';
+let mRegex = /Wow/;
+let mresult = mString.match(mRegex); // returns ['Wow']
