@@ -44,3 +44,13 @@ extracts actual string matches into array
 let mString = 'Wow it just appeared from nowhere';
 let mRegex = /Wow/;
 let mresult = mString.match(mRegex); // returns ['Wow']
+
+/*
+(5).
+g flag = /regex/g
+To search or extract a pattern more than once, you can use the g flag.
+*/
+
+let colour = 'RED, red, rEd';
+let colRegex = /red/gi;
+let colresult = colour.match(colRegex); // returns ['RED', 'red', 'rEd'];
