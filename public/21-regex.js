@@ -54,3 +54,15 @@ To search or extract a pattern more than once, you can use the g flag.
 let colour = 'RED, red, rEd';
 let colRegex = /red/gi;
 let colresult = colour.match(colRegex); // returns ['RED', 'red', 'rEd'];
+
+/*
+(6).
+wildcard character class = /./
+Matches any single character except line terminators
+(Inside a character set, the dot loses its special meaning and matches a literal dot.)
+(ES2018 added the s "dotAll" flag, which allows the dot to also match line terminators.)
+*/
+
+let rhymeString = 'Run for fun in the sun while we eat a bun';
+let rhymeRegex = /.un/gi;
+let result = rhymeString.match(rhymeRegex).length; // returns 4 matches
