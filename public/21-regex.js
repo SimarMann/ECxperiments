@@ -66,3 +66,15 @@ Matches any single character except line terminators
 let rhymeString = 'Run for fun in the sun while we eat a bun';
 let rhymeRegex = /.un/gi;
 let result = rhymeString.match(rhymeRegex).length; // returns 4 matches
+
+/*
+(7).
+character sets = [a-z]
+A character set. Matches any one of the enclosed characters.
+Specify a range of characters by using a hyphen.
+Can include a character class in a character set.
+*/
+
+let setString = "We'll always remember the feeling";
+let setRegex = /[aeiou]/gi;
+let result = setString.match(setRegex);
