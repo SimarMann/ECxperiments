@@ -76,5 +76,16 @@ Can include a character class in a character set.
 */
 
 let setString = "We'll always remember the feeling";
-let setRegex = /[aeiou]/gi;
+let setRegex = /[a-z0-9]/gi; // match all alphanumberic characters
 let result = setString.match(setRegex);
+
+/*
+(8).
+negated character sets = [^a-z]
+matches anything that is not enclosed in the brackets
+You can specify a range of characters by using a hyphen
+*/
+
+let negateString = '@!#$%^&';
+let negateRegex = /[^A-Za-z0-9]/g; // match everything but alphanumeric characters
+let result = negateString.match(negateRegex);
