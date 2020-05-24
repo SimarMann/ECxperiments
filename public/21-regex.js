@@ -69,7 +69,7 @@ let result = rhymeString.match(rhymeRegex).length; // returns 4 matches
 
 /*
 (7).
-character sets = [a-z]
+character sets = /[a-z]/
 A character set. Matches any one of the enclosed characters.
 Specify a range of characters by using a hyphen.
 Can include a character class in a character set.
@@ -81,7 +81,7 @@ let result = setString.match(setRegex);
 
 /*
 (8).
-negated character sets = [^a-z]
+negated character sets = /[^a-z]/
 matches anything that is not enclosed in the brackets
 You can specify a range of characters by using a hyphen
 */
@@ -89,3 +89,14 @@ You can specify a range of characters by using a hyphen
 let negateString = '@!#$%^&';
 let negateRegex = /[^A-Za-z0-9]/g; // match everything but alphanumeric characters
 let result = negateString.match(negateRegex);
+
+/*
+(9).
+One or more quantifier = /x+/
+match characters that appear one or more times in a row.
+find a character that occurs at least once, and may be repeated
+*/
+
+let wordString = 'Mississauga';
+let wordRegex = /s+/gi;
+let result = wordString.match(wordRegex);
