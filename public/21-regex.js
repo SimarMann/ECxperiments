@@ -100,3 +100,20 @@ find a character that occurs at least once, and may be repeated
 let wordString = 'Mississauga';
 let wordRegex = /s+/gi;
 let result = wordString.match(wordRegex);
+
+/*
+(10).
+Complex replace using replacer function.
+Return input string with the first letter of each word capitalized. 
+The rest of the word in lower case.
+*/
+function titleCase(str) {
+  let arr = str.split(" ")
+  const re = /(?<firstChar>[a-zA-Z])(?<subStr>[a-zA-Z']*)/
+  
+  let replacer = (match, firstChar, subStr) => 
+  `${firstChar.toUpperCase()}${subStr.toLowerCase()}`;
+
+  return arr.map(e=> e.replace(re, replacer)).join(' ')
+}
+
