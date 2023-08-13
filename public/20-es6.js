@@ -427,6 +427,7 @@ Import parts of a file
 */
 
 // ES5: each script loaded one by one
+/*
 <html>
 <head>
 </head>
@@ -440,15 +441,17 @@ Import parts of a file
   <script src="js/script4.js"></script>
 </body>
 </html>
-
+*/
 
 // ES6: Module Script loaded in one file 
+/*
 <html>
   <body>
   <!--HTML content goes here-->
     <script type="module" src="index.js"></script>
   </body>
 </html>
+*/
 
 /*
 Export:
