@@ -574,5 +574,26 @@ makeServerRequest.then(result => {
   console.log(result);
 });
 
+/* 
+(6).
+Map Object:
+The Map object holds key-value pairs and remembers the original insertion order of the keys. 
+Any value (both objects and primitive values) may be used as either a key or a value.
+*/
+const romans = new Map([
+ [1000, "M"],
+ [900, "CM"],
+ [500, "D"], 
+ [400, "CD"],
+ [100, "C"],
+ [90, "XC"],
+ [50, "L"],
+ [40, "XL"],
+ [10, "X"],
+ [9, "IX"],
+ [5, "V"],
+ [4, "IV"],
+ [1, "I"]
+]);
 
 
