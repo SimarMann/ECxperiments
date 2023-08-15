@@ -16,3 +16,15 @@ const leastCommonMultiple = arr => {
   return Array.from({length: max - min + 1}, (e, i) => i + min).reduce(lcm);
 }
 console.log(leastCommonMultiple([23, 18]));
+
+/*
+In JavaScript '%' is a remainder operator.
+To obtain a modulo in JavaScript:
+In place of n % d, use ((n % d) + d) % d
+*/
+
+/* Remainder */
+-9 % 26 // -9
+
+/* Modulo */
+((-9 % 26) + 26) % 26 // 17
