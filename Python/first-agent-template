@@ -1,9 +1,19 @@
 from smolagents import CodeAgent,DuckDuckGoSearchTool, HfApiModel,load_tool,tool
+from smolagents.utils import truncate_content
 import datetime
 import requests
 import pytz
 import yaml
 from tools.final_answer import FinalAnswerTool
+
+import urllib.request
+import urllib.parse
+import urllib.error
+import re
+import json
+import time
+import random
+from bs4 import BeautifulSoup
 
 from Gradio_UI import GradioUI
 
@@ -19,6 +29,151 @@ def my_custom_tool(arg1:str, arg2:int)-> str: #it's import to specify the return
     return "What magic will you build ?"
 
 @tool
+def get_city_news_markdown(city:str) -> str:
+    """Fetches news about a city and returns it in markdown format.
+    Args:
+        city: Name of the city to get news about
+    """
+    try:
+        # URL encode the city name
+        encoded_city = urllib.parse.quote(f"{city} news")
+        
+        user_agents = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0'
+        ]
+        
+        headers = {
+            'User-Agent': random.choice(user_agents),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.google.com/',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'cross-site',
+            'Sec-Fetch-User': '?1',
+            'Cache-Control': 'max-age=0',
+        }
+        
+        # Let's try a different approach with Yahoo News
+        url = f'https://news.search.yahoo.com/search?p={encoded_city}'
+        
+        response = requests.get(url, headers=headers, timeout=15)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        markdown_content = []
+        count = 0
+        
+        # Parse Yahoo News format
+        articles = soup.find_all('div', {'class': 'NewsArticle'})
+        
+        if articles:
+            for article in articles[:10]:
+                try:
+                    # Title
+                    title_element = article.find('h4')
+                    title = title_element.get_text().strip() if title_element else "No title available"
+                    
+                    # Link
+                    link_element = article.find('a')
+                    url = ""
+                    if link_element and 'href' in link_element.attrs:
+                        url = link_element['href']
+                        # Yahoo wraps URLs, so we need to extract the actual URL
+                        url_match = re.search(r'RU=([^/]+)', url)
+                        if url_match:
+                            url = urllib.parse.unquote(url_match.group(1))
+                    
+                    # Source
+                    source_element = article.find('span', {'class': 'provider'})
+                    source = source_element.get_text().strip() if source_element else "Unknown source"
+                    
+                    # Date
+                    time_element = article.find('span', {'class': 'timestamp'})
+                    date = time_element.get_text().strip() if time_element else "No date available"
+                    
+                    # Description
+                    desc_element = article.find('p', {'class': 'description'})
+                    excerpt = desc_element.get_text().strip() if desc_element else "No excerpt available"
+                    
+                    # Format output
+                    markdown_content.append(f"## {title}\n")
+                    if excerpt != "No excerpt available":
+                        markdown_content.append(f"{excerpt}\n")
+                    markdown_content.append(f"Source: {source} | Date: {date}\n")
+                    if url:
+                        markdown_content.append(f"[Read more]({url})\n")
+                    markdown_content.append("---\n")
+                    count += 1
+                except Exception as e:
+                    continue
+        
+        # If Yahoo News fails, try Bing News
+        if count == 0:
+            url = f'https://www.bing.com/news/search?q={encoded_city}'
+            response = requests.get(url, headers=headers, timeout=15)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            for article in soup.find_all('div', {'class': 'news-card'})[:10]:
+                try:
+                    # Title
+                    title_element = article.find('a', {'class': 'title'})
+                    title = title_element.get_text().strip() if title_element else "No title available"
+                    
+                    # URL
+                    url = title_element['href'] if title_element and 'href' in title_element.attrs else ""
+                    
+                    # Source and date
+                    meta_div = article.find('div', {'class': 'source'})
+                    source = "Unknown source"
+                    date = "No date available"
+                    
+                    if meta_div:
+                        source_span = meta_div.find('span')
+                        if source_span:
+                            source = source_span.get_text().strip()
+                        
+                        time_span = meta_div.find('span', {'class': 'time'})
+                        if time_span:
+                            date = time_span.get_text().strip()
+                    
+                    # Description
+                    desc_element = article.find('div', {'class': 'snippet'})
+                    excerpt = desc_element.get_text().strip() if desc_element else "No excerpt available"
+                    
+                    # Format output
+                    markdown_content.append(f"## {title}\n")
+                    if excerpt != "No excerpt available":
+                        markdown_content.append(f"{excerpt}\n")
+                    markdown_content.append(f"Source: {source} | Date: {date}\n")
+                    if url:
+                        markdown_content.append(f"[Read more]({url})\n")
+                    markdown_content.append("---\n")
+                    count += 1
+                except Exception as e:
+                    continue
+
+        final_content = "\n".join(markdown_content)
+            
+        # Truncate if necessary
+        if len(final_content) > 5000:
+            final_content = final_content[:5000] + "...\n\n*Content truncated due to length*"
+        
+        return final_content if final_content.strip() else f"No news found for {city}"
+    
+    except urllib.error.HTTPError as e:
+        return f"Error fetching news: HTTP Error {e.code}: {e.reason}"
+    except urllib.error.URLError as e:
+        return f"Error fetching news: URL Error: {e.reason}"
+    except Exception as e:
+        return f"Unexpected error occurred: {str(e)}"
+        
+@tool
 def get_current_time_in_timezone(timezone: str) -> str:
     """A tool that fetches the current local time in a specified timezone.
     Args:
@@ -33,10 +188,7 @@ def get_current_time_in_timezone(timezone: str) -> str:
     except Exception as e:
         return f"Error fetching time for timezone '{timezone}': {str(e)}"
 
-
 final_answer = FinalAnswerTool()
-
-# If the agent does not answer, the model is overloaded, please use another model or the following Hugging Face Endpoint that also contains qwen2.5 coder: 
 
 model = HfApiModel(
 max_tokens=2096,
@@ -54,15 +206,15 @@ with open("prompts.yaml", 'r') as stream:
     
 agent = CodeAgent(
     model=model,
-    tools=[final_answer, image_generation_tool, DuckDuckGoSearchTool()], ## add your tools here (don't remove final answer)
+    tools=[final_answer, get_city_news_markdown, image_generation_tool], ## add your tools here (don't remove final answer)
     max_steps=6,
     verbosity_level=1,
     grammar=None,
     planning_interval=None,
     name=None,
     description=None,
-    prompt_templates=prompt_templates
+    prompt_templates=prompt_templates,
 )
 
 
-GradioUI(agent).launch()
+GradioUI(agent).launch(
